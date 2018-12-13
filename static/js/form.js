@@ -67,11 +67,14 @@ function resetErrors() {
 
 function isValid(file, webUrl) {
     if (file && webUrl){
-        setError('common - Please Choose one!')
+        setError('common - Please Choose one!');
+        return false;
     }
     else if (!file  && !webUrl){
         setError('common - Please provide url or HTML file!')
+        return false;
     }
+    return true;
 }
 
 
