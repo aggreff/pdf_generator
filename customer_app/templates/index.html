@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    {% load static %}
+    {% load i18n %}
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <script src="{% static 'js/form.js' %}"></script>
+    <title>{% trans "Pdf generator" %}</title>
+</head>
+<body>
+<form>
+    <p>
+        <input id="upload-pdf" type="file"/>
+    </p>
+    <p>
+        <label><input id="web-url" type="text">{% trans "Web Url" %}</label>
+    </p>
+    <p id="error">
+    </p>
+    <p>
+        <button id="upload">{% trans "Upload" %}</button>
+    </p>
+</form>
+</body>
+</html>
