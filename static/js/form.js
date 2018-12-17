@@ -43,6 +43,7 @@ function checkPdfStatus(taskId) {
         processData: false,
         type: 'get',
         success: function (data) {
+            console.log(data);
             if (data.filename) {
                 clearInterval(intervalId);
                 window.open(window.location.href + 'media/' + data.filename)

@@ -19,7 +19,7 @@ class PdfGenerator(APIView):
         file_name = generate_filename(file or url, TYPE_FILE if file else TYPE_URL)
         file_path = None
         if file:
-            file_path = UPLOAD_HTML_DIR + file_name
+            file_path = UPLOAD_HTML_DIR + file_name.replace('.pdf', '.html')
             default_storage.save(file_path, file)
 
         task = generate_pdf.delay(file_path or url, TYPE_FILE if file else TYPE_URL, file_name)

@@ -2,7 +2,7 @@ from celery.schedules import crontab
 from celery.task import periodic_task
 from django.core.files.storage import default_storage
 from weasyprint import HTML
-
+import pdfkit
 from common.constants import TYPE_FILE
 from common.utils import get_pdf_file_path
 from pdf_generator.celery import app
