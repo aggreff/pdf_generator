@@ -47,6 +47,10 @@ function checkPdfStatus(taskId) {
                 clearInterval(intervalId);
                 window.open(window.location.href + 'media/' + data.filename)
             }
+        },
+        error: function (data) {
+            clearInterval(intervalId);
+            handleError(data);
         }
     });
 }
@@ -71,7 +75,7 @@ function isValid(file, webUrl) {
         return false;
     }
     else if (!file  && !webUrl){
-        setError('common - Please provide url or HTML file!')
+        setError('common - Please provide url or HTML file!');
         return false;
     }
     return true;
