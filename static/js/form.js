@@ -50,6 +50,7 @@ function checkPdfStatus(taskId) {
                 window.open(fileUrl);
                 toggleUploadButton(false);
                 showSuccessMessage(fileUrl);
+                clearFoormData();
             }
 
         },
@@ -116,4 +117,8 @@ function toggleUploadButton(disable) {
 
 function showSuccessMessage(fileUrl) {
     $('#text-success').text('Congratulations you can use this link within 7 days - ' + fileUrl)
+}
+
+function clearFoormData() {
+    $('form :input').val('');
 }
