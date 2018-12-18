@@ -122,3 +122,10 @@ MAX_UPLOAD_SIZE = "5242880"  # 50MB
 BROKER_URL = 'redis://redis:6379'
 CELERY_RESULT_BACKEND = 'redis://redis:6379'
 CELERY_TIMEZONE = 'Europe/Minsk'
+STORE_PDF_DAYS = 7
+
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_RATES': {
+        'pdf_generation': '5/min'
+    }
+}

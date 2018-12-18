@@ -8,18 +8,21 @@
     <title>{% trans "Pdf generator" %}</title>
 </head>
 <body>
-<form>
-    <p>
-        <input id="upload-pdf" type="file"/>
+<form class="form">
+    <input class="input input-upload mb-20" id="upload-pdf" type="file"/>
+    <p class="text-divider mb-20">OR</p>
+    <label class="label" for="web-url">{% trans "Web Url" %}</label>
+    <input class="input input-text" id="web-url" type="text">
+    <p class="text-error mb-20" id="error">
     </p>
-    <p>
-        <label><input id="web-url" type="text">{% trans "Web Url" %}</label>
+
+    <button class="input button" id="upload"><p id="button-text">{% trans "Upload" %}</p>
+        <div id="loader"></div>
+    </button>
+    <p class="text-success mb-20" id="text-success">
+
     </p>
-    <p id="error">
-    </p>
-    <p>
-        <button id="upload">{% trans "Upload" %}</button>
-    </p>
+
 </form>
 </body>
 </html>

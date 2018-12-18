@@ -2,6 +2,7 @@ $(document).ready(function () {
         $('#upload').on('click', function (e) {
             e.preventDefault();
             resetErrors();
+            toggleUploadButton(true);
             var file = $('#upload-pdf').prop('files')[0];
             var webUrl = $('#web-url').val();
             if (!isValid(file, webUrl)) return;
@@ -43,11 +44,14 @@ function checkPdfStatus(taskId) {
         processData: false,
         type: 'get',
         success: function (data) {
-            console.log(data);
             if (data.filename) {
+                var fileUrl = window.location.href + 'media/' + data.filename;
                 clearInterval(intervalId);
-                window.open(window.location.href + 'media/' + data.filename)
+                window.open(fileUrl);
+                toggleUploadButton(false);
+                showSuccessMessage(fileUrl);
             }
+
         },
         error: function (data) {
             clearInterval(intervalId);
@@ -61,28 +65,55 @@ function handleError(response) {
     for (var key in response.responseJSON) {
         errorMessage += key + ' - ' + response.responseJSON[key];
     }
-   setError(errorMessage);
+    if (response.status === 413) {
+        errorMessage = 'Entity too large!';
+    }
+    setError(errorMessage);
+    toggleUploadButton(false);
 }
 
 
 function resetErrors() {
-   setError(null)
+    setError(null);
+    $('#text-success').text(null)
 }
 
 
 function isValid(file, webUrl) {
-    if (file && webUrl){
+    var noErrors = true;
+    if (file && webUrl) {
         setError('common - Please Choose one!');
-        return false;
+        noErrors = false;
     }
-    else if (!file  && !webUrl){
+    else if (!file && !webUrl) {
         setError('common - Please provide url or HTML file!');
-        return false;
+        noErrors = false;
     }
-    return true;
+    if (!noErrors) {
+        toggleUploadButton(false)
+    }
+    return noErrors;
 }
 
 
 function setError(text) {
     $('#error').text(text)
+}
+
+
+function toggleUploadButton(disable) {
+    $('#upload').prop('disabled', disable);
+    if (disable) {
+        $('#loader').show();
+        $('#button-text').hide();
+    }
+    else {
+        $('#loader').hide();
+        $('#button-text').show();
+    }
+}
+
+
+function showSuccessMessage(fileUrl) {
+    $('#text-success').text('Congratulations you can use this link within 7 days - ' + fileUrl)
 }
