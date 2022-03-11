@@ -16,7 +16,7 @@ html5lib==1.0.1
 idna==2.8
 kombu==4.2.2
 Markdown==3.0.1
-Pillow==5.3.0
+Pillow==9.0.1
 pycparser==2.19
 pydash==4.7.4
 Pyphen==0.9.5
